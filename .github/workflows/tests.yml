@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install torch==2.0.1 --index-url https://download.pytorch.org/whl/cpu
-          pip install numpy hydra-core omegaconf pytest
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy omegaconf pytest
 
       - name: Run tests
-        run: pytest tests/ -v
+        run: pytest tests/ -v --tb=short
