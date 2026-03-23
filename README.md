@@ -1,5 +1,7 @@
 # ⚡ maxwell-pinn
 
+[![tests](https://github.com/saitejasrivilli/maxwell-pinn/actions/workflows/tests.yml/badge.svg)](https://github.com/saitejasrivilli/maxwell-pinn/actions/workflows/tests.yml)
+
 [![Open Live Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://maxwell-pinn.streamlit.app)
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.10-orange)
