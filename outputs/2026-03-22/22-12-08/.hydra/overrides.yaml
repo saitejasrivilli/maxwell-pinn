@@ -1,0 +1,6 @@
+- geometry=cylindrical
+- bc=hard
+- network=fourier_net
+- experiment.name=pretrain_cylinder
+- experiment.output_dir=outputs/pretrain_cylinder
+- training.max_epochs=15000

@@ -1,0 +1,1 @@
+{'name': 'maxwell_te', 'mode': 'TE', 'equations': ['curl_curl_E', 'gauss_law'], 'pde_loss_weight': 1.0}

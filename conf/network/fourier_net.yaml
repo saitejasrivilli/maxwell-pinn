@@ -1,0 +1,11 @@
+name: fourier_net
+
+architecture: FourierNetArch
+n_input: 8              # (r, z, param_vector_dim)
+n_output: 4             # (E_r_re, E_r_im, E_z_re, E_z_im)
+layer_size: 512
+n_layers: 8             # total transformer blocks
+frequencies: [1, 2, 4, 8, 16]
+frequencies_params: [1, 2, 4]
+activation_fn: silu
+skip_connections: true

@@ -1,0 +1,1 @@
+{'name': 'fourier_net', 'architecture': 'FourierNetArch', 'n_input': 8, 'n_output': 4, 'layer_size': 512, 'n_layers': 8, 'frequencies': [1, 2, 4, 8, 16], 'frequencies_params': [1, 2, 4], 'activation_fn': 'silu', 'skip_connections': True}

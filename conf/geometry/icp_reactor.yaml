@@ -1,0 +1,28 @@
+# Asymmetric ICP reactor — used for Stage 2 fine-tuning
+name: icp_reactor
+
+chamber:
+  radius: 0.175
+  height: 0.35
+  faraday_shield: true
+  shield_gap: 0.003   # metres between coil and shield
+
+coil:
+  type: multi_turn
+  n_turns: 5
+  inner_radius: 0.10
+  outer_radius: 0.14
+  pitch: 0.025        # axial spacing between turns
+  frequency: 13.56e6
+
+plasma:
+  conductivity_model: radial_polynomial
+  # sigma(r) = c0 + c1*r + c2*r^2
+  c0: 12.0
+  c1: -30.0
+  c2: 40.0
+
+domain:
+  n_interior: 16384
+  n_boundary: 4096
+  n_interface: 2048

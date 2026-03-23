@@ -1,0 +1,7 @@
+artifact_location: /storage/gxg8313/saiteja/pinn/mlruns/650247709743122636
+creation_time: 1774221376934
+experiment_id: '650247709743122636'
+last_update_time: 1774221376934
+lifecycle_stage: active
+name: finetune_icp
+workspace: default

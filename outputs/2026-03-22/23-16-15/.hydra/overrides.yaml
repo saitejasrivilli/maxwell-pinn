@@ -1,0 +1,9 @@
+- geometry=icp_reactor
+- bc=hard
+- network=fourier_net
+- experiment.name=finetune_icp
+- experiment.output_dir=outputs/finetune_icp
+- training.max_epochs=5000
+- transfer.enabled=true
+- transfer.checkpoint=outputs/pretrain_cylinder/ckpt_best.pt
+- transfer.frozen_blocks=6

@@ -1,0 +1,29 @@
+defaults:
+  - geometry: cylindrical
+  - network: fourier_net
+  - physics: maxwell_te
+  - bc: hard
+  - _self_
+
+experiment:
+  name: pinn_em_baseline
+  seed: 42
+  output_dir: outputs/${experiment.name}
+
+training:
+  max_epochs: 15000
+  lr: 1e-4
+  lr_decay: 0.95
+  lr_decay_steps: 1000
+  batch_size: 2048
+  log_every: 500
+  save_every: 2000
+
+transfer:
+  enabled: false
+  checkpoint: null
+  frozen_blocks: 6          # freeze first N transformer blocks
+
+mlflow:
+  tracking_uri: mlruns
+  experiment_name: ${experiment.name}

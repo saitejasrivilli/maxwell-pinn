@@ -1,0 +1,9 @@
+name: hard
+method: ansatz
+
+# E_pred(x) = tanh(dist(x, wall) / delta) * E_net(x)
+# Enforces E_tangential = 0 at PEC wall exactly by construction.
+delta: 0.005          # sharpness of the distance taper (metres)
+
+# No penalty weight needed — BC is enforced algebraically
+bc_loss_weight: 0.0   # unused for hard BC, kept for API consistency

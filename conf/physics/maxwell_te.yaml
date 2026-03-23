@@ -1,0 +1,8 @@
+name: maxwell_te
+mode: TE             # 2D azimuthal — valid for cylindrical symmetry
+
+equations:
+  - curl_curl_E      # ∇×∇×E − k²E = iωμ₀J_coil
+  - gauss_law        # ∇·(εE) = 0 (divergence-free)
+
+pde_loss_weight: 1.0

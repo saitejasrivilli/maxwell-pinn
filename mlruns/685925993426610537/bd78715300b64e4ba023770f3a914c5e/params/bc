@@ -1,0 +1,1 @@
+{'name': 'hard', 'method': 'ansatz', 'delta': 0.005, 'bc_loss_weight': 0.0}

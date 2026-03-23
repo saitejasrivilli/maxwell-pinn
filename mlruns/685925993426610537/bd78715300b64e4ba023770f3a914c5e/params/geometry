@@ -1,0 +1,1 @@
+{'name': 'cylindrical', 'chamber': {'radius': 0.15, 'height': 0.3}, 'coil': {'type': 'single_turn', 'radius': 0.12, 'z_center': 0.2, 'frequency': 13560000.0}, 'plasma': {'conductivity_model': 'uniform', 'sigma_0': 10.0}, 'domain': {'n_interior': 8192, 'n_boundary': 2048, 'n_interface': 1024}}

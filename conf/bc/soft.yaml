@@ -1,0 +1,10 @@
+name: soft
+method: penalty
+
+# Loss += lambda * ||E_tangential||^2 at boundary collocation points.
+# lambda is annealed from lambda_start → lambda_end over warmup_epochs.
+lambda_start: 1.0
+lambda_end: 100.0
+warmup_epochs: 3000
+
+bc_loss_weight: 1.0   # multiplied by current lambda

@@ -1,0 +1,21 @@
+# Simple cylindrical chamber — used for Stage 1 pretraining
+name: cylindrical
+
+chamber:
+  radius: 0.15        # metres
+  height: 0.30
+
+coil:
+  type: single_turn
+  radius: 0.12
+  z_center: 0.20
+  frequency: 13.56e6  # Hz
+
+plasma:
+  conductivity_model: uniform
+  sigma_0: 10.0       # S/m
+
+domain:
+  n_interior: 8192
+  n_boundary: 2048
+  n_interface: 1024

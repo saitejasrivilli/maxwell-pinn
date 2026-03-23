@@ -1,0 +1,1 @@
+{'enabled': True, 'checkpoint': 'outputs/pretrain_cylinder/ckpt_best.pt', 'frozen_blocks': 6}

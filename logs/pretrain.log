@@ -1,0 +1,180 @@
+nohup: ignoring input
+[2026-03-22 22:13:34,034][__main__][INFO] - Config:
+geometry:
+  name: cylindrical
+  chamber:
+    radius: 0.15
+    height: 0.3
+  coil:
+    type: single_turn
+    radius: 0.12
+    z_center: 0.2
+    frequency: 13560000.0
+  plasma:
+    conductivity_model: uniform
+    sigma_0: 10.0
+  domain:
+    n_interior: 8192
+    n_boundary: 2048
+    n_interface: 1024
+network:
+  name: fourier_net
+  architecture: FourierNetArch
+  n_input: 8
+  n_output: 4
+  layer_size: 512
+  n_layers: 8
+  frequencies:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  frequencies_params:
+  - 1
+  - 2
+  - 4
+  activation_fn: silu
+  skip_connections: true
+physics:
+  name: maxwell_te
+  mode: TE
+  equations:
+  - curl_curl_E
+  - gauss_law
+  pde_loss_weight: 1.0
+bc:
+  name: hard
+  method: ansatz
+  delta: 0.005
+  bc_loss_weight: 0.0
+experiment:
+  name: pretrain_cylinder
+  seed: 42
+  output_dir: outputs/pretrain_cylinder
+training:
+  max_epochs: 15000
+  lr: 0.0001
+  lr_decay: 0.95
+  lr_decay_steps: 1000
+  batch_size: 2048
+  log_every: 500
+  save_every: 2000
+transfer:
+  enabled: false
+  checkpoint: null
+  frozen_blocks: 6
+mlflow:
+  tracking_uri: mlruns
+  experiment_name: ${experiment.name}
+
+[2026-03-22 22:13:34,159][__main__][INFO] - Device: cuda
+[2026-03-22 22:13:34,271][__main__][INFO] - GPU: NVIDIA A30
+/home/gxg8313/.venv/pinn/lib/python3.11/site-packages/mlflow/tracking/_tracking_service/utils.py:184: FutureWarning: The filesystem tracking backend (e.g., './mlruns') is deprecated as of February 2026. Consider transitioning to a database backend (e.g., 'sqlite:///mlflow.db') to take advantage of the latest MLflow features. See https://mlflow.org/docs/latest/self-hosting/migrate-from-file-store for migration guidance.
+  return FileStore(store_uri, store_uri)
+[2026-03-22 22:13:36,404][__main__][INFO] - Network: 1,592,836 params
+[2026-03-22 22:13:36,645][src.transfer][INFO] - Parameters — total: 1,592,836  trainable: 1,592,836  frozen: 0  (100.0% active)
+[2026-03-22 22:13:38,314][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 1, loss 2.3511e+03)
+[2026-03-22 22:13:38,747][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 2, loss 1.7809e+03)
+[2026-03-22 22:13:39,107][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 3, loss 1.4555e+03)
+[2026-03-22 22:13:39,487][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 4, loss 1.3811e+03)
+[2026-03-22 22:13:39,887][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 5, loss 8.6463e+02)
+[2026-03-22 22:13:40,263][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 6, loss 6.2235e+02)
+[2026-03-22 22:13:40,671][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 7, loss 4.0711e+02)
+[2026-03-22 22:13:41,048][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 8, loss 3.3655e+02)
+[2026-03-22 22:13:41,437][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 9, loss 1.1853e+02)
+[2026-03-22 22:13:41,818][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 10, loss 6.7190e+01)
+[2026-03-22 22:13:42,370][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 12, loss 2.0709e+01)
+[2026-03-22 22:13:43,788][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 20, loss 1.9248e+01)
+[2026-03-22 22:13:44,185][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 21, loss 5.8882e+00)
+[2026-03-22 22:13:44,580][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 22, loss 3.9875e+00)
+[2026-03-22 22:13:46,143][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 31, loss 3.2903e+00)
+[2026-03-22 22:13:46,520][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 32, loss 3.1732e+00)
+[2026-03-22 22:13:47,342][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 36, loss 2.2797e+00)
+[2026-03-22 22:13:47,713][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 37, loss 1.5694e+00)
+[2026-03-22 22:13:48,559][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 41, loss 9.4379e-01)
+[2026-03-22 22:13:51,400][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 59, loss 8.7947e-01)
+[2026-03-22 22:13:53,683][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 73, loss 8.7890e-01)
+[2026-03-22 22:13:54,794][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 79, loss 6.0523e-01)
+[2026-03-22 22:13:55,319][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 81, loss 4.3202e-01)
+[2026-03-22 22:13:57,018][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 91, loss 4.0377e-01)
+[2026-03-22 22:14:02,168][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 125, loss 3.9371e-01)
+[2026-03-22 22:14:03,720][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 134, loss 3.5831e-01)
+[2026-03-22 22:14:04,286][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 136, loss 2.2154e-01)
+[2026-03-22 22:14:08,264][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 162, loss 1.7444e-01)
+[2026-03-22 22:14:22,458][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 259, loss 1.4105e-01)
+[2026-03-22 22:14:23,300][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 263, loss 1.2755e-01)
+[2026-03-22 22:14:24,722][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 271, loss 1.0198e-01)
+[2026-03-22 22:14:26,703][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 283, loss 8.1168e-02)
+[2026-03-22 22:14:31,442][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 314, loss 7.7840e-02)
+[2026-03-22 22:14:58,251][__main__][INFO] - epoch    500 | loss 2.5953e-01 (pde 2.5953e-01, bc 0.0000e+00) | lr 1.00e-04
+[2026-03-22 22:15:03,520][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 534, loss 7.5186e-02)
+[2026-03-22 22:15:04,051][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 536, loss 6.2030e-02)
+[2026-03-22 22:15:04,886][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 540, loss 4.2525e-02)
+[2026-03-22 22:15:06,279][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 548, loss 4.2068e-02)
+[2026-03-22 22:16:11,365][__main__][INFO] - epoch   1000 | loss 2.3920e-01 (pde 2.3920e-01, bc 0.0000e+00) | lr 9.50e-05
+[2026-03-22 22:16:15,398][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 1026, loss 3.3416e-02)
+[2026-03-22 22:16:27,879][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 1111, loss 3.0579e-02)
+[2026-03-22 22:16:41,367][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 1203, loss 2.6966e-02)
+[2026-03-22 22:16:56,698][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 1308, loss 2.2694e-02)
+[2026-03-22 22:17:24,360][__main__][INFO] - epoch   1500 | loss 2.7984e-01 (pde 2.7984e-01, bc 0.0000e+00) | lr 9.50e-05
+[2026-03-22 22:17:36,289][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 1581, loss 1.8952e-02)
+[2026-03-22 22:18:36,582][__main__][INFO] - epoch   2000 | loss 1.4820e-01 (pde 1.4820e-01, bc 0.0000e+00) | lr 9.02e-05
+[2026-03-22 22:18:36,836][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_002000.pt  (epoch 2000, loss 1.4820e-01)
+[2026-03-22 22:19:28,091][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 2355, loss 1.8652e-02)
+[2026-03-22 22:19:48,973][__main__][INFO] - epoch   2500 | loss 6.2582e-02 (pde 6.2582e-02, bc 0.0000e+00) | lr 9.02e-05
+[2026-03-22 22:20:21,612][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 2725, loss 1.6623e-02)
+[2026-03-22 22:20:24,743][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 2745, loss 1.4571e-02)
+[2026-03-22 22:20:50,003][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 2919, loss 1.4041e-02)
+[2026-03-22 22:20:51,866][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 2930, loss 7.1417e-03)
+[2026-03-22 22:21:01,984][__main__][INFO] - epoch   3000 | loss 2.3635e-01 (pde 2.3635e-01, bc 0.0000e+00) | lr 8.57e-05
+[2026-03-22 22:21:57,453][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 3384, loss 6.5206e-03)
+[2026-03-22 22:22:14,177][__main__][INFO] - epoch   3500 | loss 5.6544e-02 (pde 5.6544e-02, bc 0.0000e+00) | lr 8.57e-05
+[2026-03-22 22:23:26,078][__main__][INFO] - epoch   4000 | loss 4.7482e-02 (pde 4.7482e-02, bc 0.0000e+00) | lr 8.15e-05
+[2026-03-22 22:23:26,354][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_004000.pt  (epoch 4000, loss 4.7482e-02)
+[2026-03-22 22:24:06,275][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 4276, loss 5.8383e-03)
+[2026-03-22 22:24:38,507][__main__][INFO] - epoch   4500 | loss 2.5799e-02 (pde 2.5799e-02, bc 0.0000e+00) | lr 8.15e-05
+[2026-03-22 22:24:41,823][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 4521, loss 4.7638e-03)
+[2026-03-22 22:25:12,279][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 4731, loss 4.6282e-03)
+[2026-03-22 22:25:50,987][__main__][INFO] - epoch   5000 | loss 8.4006e-02 (pde 8.4006e-02, bc 0.0000e+00) | lr 7.74e-05
+[2026-03-22 22:27:02,901][__main__][INFO] - epoch   5500 | loss 4.6303e-02 (pde 4.6303e-02, bc 0.0000e+00) | lr 7.74e-05
+[2026-03-22 22:28:14,814][__main__][INFO] - epoch   6000 | loss 4.9796e-02 (pde 4.9796e-02, bc 0.0000e+00) | lr 7.35e-05
+[2026-03-22 22:28:15,058][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_006000.pt  (epoch 6000, loss 4.9796e-02)
+[2026-03-22 22:28:24,511][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 6064, loss 4.5077e-03)
+[2026-03-22 22:29:27,209][__main__][INFO] - epoch   6500 | loss 5.1255e-02 (pde 5.1255e-02, bc 0.0000e+00) | lr 7.35e-05
+[2026-03-22 22:30:39,129][__main__][INFO] - epoch   7000 | loss 1.0715e-02 (pde 1.0715e-02, bc 0.0000e+00) | lr 6.98e-05
+[2026-03-22 22:30:50,027][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 7074, loss 4.4467e-03)
+[2026-03-22 22:31:05,951][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 7183, loss 3.4233e-03)
+[2026-03-22 22:31:24,478][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 7310, loss 3.2713e-03)
+[2026-03-22 22:31:51,893][__main__][INFO] - epoch   7500 | loss 2.8162e-02 (pde 2.8162e-02, bc 0.0000e+00) | lr 6.98e-05
+[2026-03-22 22:32:46,377][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 7877, loss 2.9649e-03)
+[2026-03-22 22:33:04,151][__main__][INFO] - epoch   8000 | loss 1.0356e-02 (pde 1.0356e-02, bc 0.0000e+00) | lr 6.63e-05
+[2026-03-22 22:33:04,400][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_008000.pt  (epoch 8000, loss 1.0356e-02)
+[2026-03-22 22:34:16,381][__main__][INFO] - epoch   8500 | loss 1.0754e-02 (pde 1.0754e-02, bc 0.0000e+00) | lr 6.63e-05
+[2026-03-22 22:35:24,676][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 8973, loss 2.6139e-03)
+[2026-03-22 22:35:27,229][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 8989, loss 2.5458e-03)
+[2026-03-22 22:35:28,877][__main__][INFO] - epoch   9000 | loss 3.0275e-02 (pde 3.0275e-02, bc 0.0000e+00) | lr 6.30e-05
+[2026-03-22 22:35:31,909][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 9019, loss 2.1692e-03)
+[2026-03-22 22:35:52,150][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 9158, loss 2.0390e-03)
+[2026-03-22 22:36:07,069][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 9260, loss 1.9679e-03)
+[2026-03-22 22:36:41,637][__main__][INFO] - epoch   9500 | loss 6.2610e+01 (pde 6.2610e+01, bc 0.0000e+00) | lr 6.30e-05
+[2026-03-22 22:37:53,614][__main__][INFO] - epoch  10000 | loss 3.8658e-02 (pde 3.8658e-02, bc 0.0000e+00) | lr 5.99e-05
+[2026-03-22 22:37:53,874][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_010000.pt  (epoch 10000, loss 3.8658e-02)
+[2026-03-22 22:38:23,595][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 10205, loss 1.6072e-03)
+[2026-03-22 22:39:06,038][__main__][INFO] - epoch  10500 | loss 5.7626e-03 (pde 5.7626e-03, bc 0.0000e+00) | lr 5.99e-05
+[2026-03-22 22:39:18,507][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 10585, loss 1.5137e-03)
+[2026-03-22 22:39:42,891][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 10753, loss 9.5965e-04)
+[2026-03-22 22:40:18,457][__main__][INFO] - epoch  11000 | loss 7.8010e-03 (pde 7.8010e-03, bc 0.0000e+00) | lr 5.69e-05
+[2026-03-22 22:41:30,364][__main__][INFO] - epoch  11500 | loss 1.4417e-02 (pde 1.4417e-02, bc 0.0000e+00) | lr 5.69e-05
+[2026-03-22 22:42:42,285][__main__][INFO] - epoch  12000 | loss 1.9992e-02 (pde 1.9992e-02, bc 0.0000e+00) | lr 5.40e-05
+[2026-03-22 22:42:42,553][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_012000.pt  (epoch 12000, loss 1.9992e-02)
+[2026-03-22 22:43:54,426][__main__][INFO] - epoch  12500 | loss 6.3455e-03 (pde 6.3455e-03, bc 0.0000e+00) | lr 5.40e-05
+[2026-03-22 22:44:05,618][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 12576, loss 8.1663e-04)
+[2026-03-22 22:45:06,587][__main__][INFO] - epoch  13000 | loss 2.4822e-01 (pde 2.4822e-01, bc 0.0000e+00) | lr 5.13e-05
+[2026-03-22 22:45:31,583][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_best.pt  (epoch 13172, loss 6.1262e-04)
+[2026-03-22 22:46:18,753][__main__][INFO] - epoch  13500 | loss 6.0958e-03 (pde 6.0958e-03, bc 0.0000e+00) | lr 5.13e-05
+[2026-03-22 22:47:30,706][__main__][INFO] - epoch  14000 | loss 2.8102e-03 (pde 2.8102e-03, bc 0.0000e+00) | lr 4.88e-05
+[2026-03-22 22:47:30,946][src.transfer][INFO] - Checkpoint saved → outputs/pretrain_cylinder/ckpt_014000.pt  (epoch 14000, loss 2.8102e-03)
+[2026-03-22 22:48:42,890][__main__][INFO] - epoch  14500 | loss 3.5093e-02 (pde 3.5093e-02, bc 0.0000e+00) | lr 4.88e-05
+[2026-03-22 22:49:54,821][__main__][INFO] - epoch  15000 | loss 1.8996e-03 (pde 1.8996e-03, bc 0.0000e+00) | lr 4.63e-05
+[2026-03-22 22:49:54,928][__main__][INFO] - Training complete. Best loss: 6.1262e-04

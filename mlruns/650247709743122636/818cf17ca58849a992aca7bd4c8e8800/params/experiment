@@ -1,0 +1,1 @@
+{'name': 'finetune_icp', 'seed': 42, 'output_dir': 'outputs/finetune_icp'}

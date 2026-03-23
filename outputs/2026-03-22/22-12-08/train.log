@@ -1,0 +1,73 @@
+[2026-03-22 22:12:09,236][__main__][INFO] - Config:
+geometry:
+  name: cylindrical
+  chamber:
+    radius: 0.15
+    height: 0.3
+  coil:
+    type: single_turn
+    radius: 0.12
+    z_center: 0.2
+    frequency: 13560000.0
+  plasma:
+    conductivity_model: uniform
+    sigma_0: 10.0
+  domain:
+    n_interior: 8192
+    n_boundary: 2048
+    n_interface: 1024
+network:
+  name: fourier_net
+  architecture: FourierNetArch
+  n_input: 3
+  n_output: 4
+  layer_size: 512
+  n_layers: 8
+  frequencies:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  frequencies_params:
+  - 1
+  - 2
+  - 4
+  activation_fn: silu
+  skip_connections: true
+physics:
+  name: maxwell_te
+  mode: TE
+  equations:
+  - curl_curl_E
+  - gauss_law
+  pde_loss_weight: 1.0
+bc:
+  name: hard
+  method: ansatz
+  delta: 0.005
+  bc_loss_weight: 0.0
+experiment:
+  name: pretrain_cylinder
+  seed: 42
+  output_dir: outputs/pretrain_cylinder
+training:
+  max_epochs: 15000
+  lr: 0.0001
+  lr_decay: 0.95
+  lr_decay_steps: 1000
+  batch_size: 16384
+  log_every: 500
+  save_every: 2000
+transfer:
+  enabled: false
+  checkpoint: null
+  frozen_blocks: 6
+mlflow:
+  tracking_uri: mlruns
+  experiment_name: ${experiment.name}
+
+[2026-03-22 22:12:09,338][__main__][INFO] - Device: cuda
+[2026-03-22 22:12:09,443][__main__][INFO] - GPU: NVIDIA A30
+[2026-03-22 22:12:11,944][__main__][INFO] - Network: 1,590,276 params
+[2026-03-22 22:12:12,179][src.transfer][INFO] - Parameters — total: 1,590,276  trainable: 1,590,276  frozen: 0  (100.0% active)

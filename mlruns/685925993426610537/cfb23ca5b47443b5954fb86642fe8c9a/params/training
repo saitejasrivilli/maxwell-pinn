@@ -1,0 +1,1 @@
+{'max_epochs': 15000, 'lr': 0.0001, 'lr_decay': 0.95, 'lr_decay_steps': 1000, 'batch_size': 16384, 'log_every': 500, 'save_every': 2000}

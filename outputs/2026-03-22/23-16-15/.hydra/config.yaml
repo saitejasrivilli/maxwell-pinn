@@ -1,0 +1,73 @@
+geometry:
+  name: icp_reactor
+  chamber:
+    radius: 0.175
+    height: 0.35
+    faraday_shield: true
+    shield_gap: 0.003
+  coil:
+    type: multi_turn
+    n_turns: 5
+    inner_radius: 0.1
+    outer_radius: 0.14
+    pitch: 0.025
+    frequency: 13560000.0
+  plasma:
+    conductivity_model: radial_polynomial
+    c0: 12.0
+    c1: -30.0
+    c2: 40.0
+  domain:
+    n_interior: 16384
+    n_boundary: 4096
+    n_interface: 2048
+network:
+  name: fourier_net
+  architecture: FourierNetArch
+  n_input: 8
+  n_output: 4
+  layer_size: 512
+  n_layers: 8
+  frequencies:
+  - 1
+  - 2
+  - 4
+  - 8
+  - 16
+  frequencies_params:
+  - 1
+  - 2
+  - 4
+  activation_fn: silu
+  skip_connections: true
+physics:
+  name: maxwell_te
+  mode: TE
+  equations:
+  - curl_curl_E
+  - gauss_law
+  pde_loss_weight: 1.0
+bc:
+  name: hard
+  method: ansatz
+  delta: 0.005
+  bc_loss_weight: 0.0
+experiment:
+  name: finetune_icp
+  seed: 42
+  output_dir: outputs/finetune_icp
+training:
+  max_epochs: 5000
+  lr: 0.0001
+  lr_decay: 0.95
+  lr_decay_steps: 1000
+  batch_size: 2048
+  log_every: 500
+  save_every: 2000
+transfer:
+  enabled: true
+  checkpoint: outputs/pretrain_cylinder/ckpt_best.pt
+  frozen_blocks: 6
+mlflow:
+  tracking_uri: mlruns
+  experiment_name: ${experiment.name}
