@@ -1,0 +1,23 @@
+[
+  {
+    "regime": "Interpolation (in-distribution)",
+    "note": "Within training range",
+    "uniformity": 0.1482,
+    "finite": true,
+    "B_peak": 0.000121
+  },
+  {
+    "regime": "Mild extrapolation (+10% OOD)",
+    "note": "10% outside training bounds",
+    "uniformity": 0.1493,
+    "finite": true,
+    "B_peak": 0.000122
+  },
+  {
+    "regime": "Far extrapolation (+30% OOD)",
+    "note": "30% outside training bounds",
+    "uniformity": 0.1502,
+    "finite": true,
+    "B_peak": 0.00012
+  }
+]

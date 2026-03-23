@@ -1,0 +1,6 @@
+{
+  "gauss_law_residual": 648.259407,
+  "bc_residual": 0.0,
+  "pde_loss_best": 0.00061,
+  "finetune_loss_best": 0.0016
+}
